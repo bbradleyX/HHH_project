@@ -1,38 +1,45 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import './App.css';
+import {Dropdown, Button} from 'react-bootstrap'
 
 
 //this will be a Dashboard page 
 //TO DO: figure out how to make a separate page and import here
 //To Do: change hardcoded name with my name
 const Dashboard = () => {
+  const authInstance = window.gapi.auth2.getAuthInstance()
+  const user = authInstance.currentUser.get()
+  const profile = user.getBasicProfile()
+  const email = profile.getEmail()
+  const name = profile.getName()
+  const id = profile.getId()
   return (
       <>
         <h1>Welcome to PalCheck</h1>
-        <div>Meri Kavtelishvili</div>
+        <div>email: {email}</div>
+        <div>name: {name}</div>
+        <Button onClick={authInstance.signOut}>Sign out</Button>
       </>
     )
 }
 
-const LoginPage = (props) => {
-  if (props.isSignedIn === null){
-    return <h4>Checking if you are signed in...</h4>
+class LoginPage extends React.Component {
+
+  componentDidMount () {
+    window.gapi.load('signin2', () => {
+          window.gapi.signin2.render('login-button')
+    })
   }
-        window.gapi.load('signin2', () => {
-          const params = {
-            onsuccess: () => {
-              console.log('user signed in ------------------------------------')
-            }
-          }
-          window.gapi.signin2.render('login-button', params)
-        })
-  return (
-    <>
-      <h2>Log in to see the dashboard</h2>
-      <div id="login-button"></div>
-    </>
-  )
+
+  render() {
+    return (
+      <>
+        <h2>Log in to see the dashboard</h2>
+        <div id="login-button"></div>
+      </>
+    )
+  }
 }
 
 const LandingPage = () => {
@@ -56,6 +63,11 @@ class App extends React.Component{
 
   //if user is signed in, renders Component, otherwise, renders LogInPage
   ifUserSignedIn(Component) {
+    if (this.state.isSignedIn === null) {
+      return (
+          <h4>checking if you are signed in...</h4> 
+        )
+    }
     return this.state.isSignedIn ?
       <Component/> :
       <LoginPage isSignedIn={this.state.isSignedIn}/>
