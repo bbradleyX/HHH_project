@@ -20,7 +20,7 @@ class LoginPage extends React.Component {
     render() {
       return (
         <>
-          <h2>Log in to see the dashboard</h2>
+          <h2>Sign in to see the dashboard</h2>
           <div id="login-button"></div>
         </>
       )

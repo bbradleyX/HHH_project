@@ -72,6 +72,7 @@ class App extends React.Component{
   render() {
     return (
      <BrowserRouter>
+      <div className="App">
         <Switch>
         <Route path="/pals" render={() =>
           this.ifUserSignedIn(Pals)}/>
@@ -80,7 +81,7 @@ class App extends React.Component{
         <Route exact path="/pals" component={Pals} />
         
         </Switch>
-        
+      </div>
      </BrowserRouter>
     )
   }
