@@ -1,14 +1,5 @@
 import React from "react";
 import LoginButton from "../components/LoginButton"
-// function LoginPage() {
-//     return (
-//         <div className="container">
-//            <h1>PalCheck Sign In</h1>
-//            <LoginButton />
-//         </div>
-//     );
-// }
-
 class LoginPage extends React.Component {
 
     componentDidMount () {
