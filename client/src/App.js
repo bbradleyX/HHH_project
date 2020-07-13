@@ -1,55 +1,15 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
-import './App.css';
+import './App.css'; 
 import {Dropdown, Button} from 'react-bootstrap'
+import Dashboard from './pages/Dashboard'
+import LoginPage from './pages/LoginPage'
+import Pals from './pages/Pals'
 
 
 //this will be a Dashboard page 
 //TO DO: figure out how to make a separate page and import here
 //To Do: change hardcoded name with my name
-const Dashboard = () => {
-  const authInstance = window.gapi.auth2.getAuthInstance()
-  const user = authInstance.currentUser.get()
-  const profile = user.getBasicProfile()
-  const email = profile.getEmail()
-  const name = profile.getName()
-  const id = profile.getId()
-  return (
-      <>
-        <h1>Welcome to PalCheck</h1>
-        <div>email: {email}</div>
-        <div>name: {name}</div>
-        <Button onClick={authInstance.signOut}>Sign out</Button>
-      </>
-    )
-}
-
-class LoginPage extends React.Component {
-
-  componentDidMount () {
-    window.gapi.load('signin2', () => {
-          window.gapi.signin2.render('login-button')
-    })
-  }
-
-  render() {
-    return (
-      <>
-        <h2>Log in to see the dashboard</h2>
-        <div id="login-button"></div>
-      </>
-    )
-  }
-}
-
-const LandingPage = () => {
-  return (
-    <>
-      <h1>Welcome to PalCheck</h1>
-      <Link to="/dashboard">Go to Dashboard</Link>
-    </>
-  )
-}
 
 class App extends React.Component{
   constructor(props) {
@@ -112,13 +72,16 @@ class App extends React.Component{
   render() {
     return (
      <BrowserRouter>
+      <div className="App">
         <Switch>
-        <Route exact path="/">
-          <LandingPage/>
-        </Route>
-        <Route path="/dashboard" render={() => 
+        <Route path="/pals" render={() =>
+          this.ifUserSignedIn(Pals)}/>
+        <Route path="/" render={() => 
           this.ifUserSignedIn(Dashboard)}/>
+        <Route exact path="/pals" component={Pals} />
+        
         </Switch>
+      </div>
      </BrowserRouter>
     )
   }
