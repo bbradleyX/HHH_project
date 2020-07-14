@@ -26,6 +26,10 @@ const ContactSchema = new Schema({
 		enum: ['Friend', 'Family', 'Professional'],
 	},
 
+	general_notes: {
+		type: String
+	},
+
 	contact_method: {
 		enum: ['Text', 'Messanger', 'Email', 'Call']
 	},
