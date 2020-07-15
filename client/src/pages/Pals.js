@@ -2,6 +2,7 @@ import React from "react";
 import {Dropdown, Button} from 'react-bootstrap';
 import Header from "../components/Header";
 import PalContainer from "../components/PalContainer";
+import "../css/pals.css"
 function Pals() {
   const authInstance = window.gapi.auth2.getAuthInstance()
   const user = authInstance.currentUser.get()
@@ -20,35 +21,26 @@ function Pals() {
                 name="Bria Bradley"
                 type="Friends" 
                 frequency="Every Week" 
-                notes="Met at InternHacks summer event, senior computer science student. Working on 
-                the infrastructure/backend of our project."
             />
             <PalContainer 
                 name="Camelia Betancourt" 
                 type="Friends" 
-                frequency="Every Week" 
-                notes="Met at InternHacks summer event, senior design student. Likes to cook a lot 
-                and is working on the design portions of our project."
+                frequency="Every Week"
             />
             <PalContainer 
                 name="Diego Corterno"
                 type="Friends"
                 frequency="Every Week"
-                notes="Met at InternHacks summer event, senior computer engineering student. The PM
-                 of our project."
             />
             <PalContainer
                 name="Meri Kavtelishvili"
                 type="Friends" 
                 frequency="Every Week" 
-                notes="Met at InternHacks summer event, senior computer science student. Working on 
-                the infrastructure/backend of our project."
             />
             <PalContainer 
                 name="Suprada Urval" 
                 type="Professional" 
                 frequency="Every Week" 
-                notes="Met at InternHacks summer event, UI engineer at Netflix. Mentor of our group."
             />
         </ul>
         
