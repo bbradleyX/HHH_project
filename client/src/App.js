@@ -55,12 +55,11 @@ class App extends React.Component{
         window.gapi.auth2.init({
           client_id: '337302123458-qhagbkm42i1k1mhrcv8qd9khorn5p7mb.apps.googleusercontent.com'
         }).then (() => {
-          const authInstance = window.gapi.auth2.
-          getAuthInstance()
+          const authInstance = window.gapi.auth2.getAuthInstance()
           const isSignedIn = authInstance.isSignedIn.get()
           this.setState({isSignedIn})
 
-          authInstance.isSignedIn.listen(isSignedIn => {
+          authInstance.isSignedIn.listen((isSignedIn) => {
             this.setState({isSignedIn})
           })
         })
