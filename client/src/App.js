@@ -7,10 +7,6 @@ import LoginPage from './pages/LoginPage'
 import Pals from './pages/Pals'
 
 
-//this will be a Dashboard page 
-//TO DO: figure out how to make a separate page and import here
-//To Do: change hardcoded name with my name
-
 class App extends React.Component{
   constructor(props) {
     super(props)
