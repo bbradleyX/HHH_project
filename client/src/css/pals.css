@@ -1,0 +1,19 @@
+.pals-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+  }
+  .pal-name {
+    margin-bottom: -5px;
+  }
+  .pal {
+    padding-left: 15px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    height: auto;
+    overflow: hidden;
+  }
+  .pal-props {
+    display: inline;
+    padding-right: 15px;
+  }
