@@ -7,26 +7,26 @@ const Contacts = require ('../models/users/ContactSchema');
 //this function gets a list of all the users
 //will pass back either data or the error message to the callback function
 
+async function catchUserInfo(){
+	const response = await fetch(Users);
+	const data = await response.json();
+}
 
-const getUsers = (callback) => {
-	Users.find({}, 'name', callback);
-	Users.find({}, 'last_name', callback);
-	Users.find({}, 'email', callback);
- 	Users.find({}, 'phone', callback);
 
-	let a1 = [name, last_name,email,phone];
-	a1.sort();
-	
-	async function catchUserInfo(){
-		const response = await fetch(a1.values);
-		const data = await response.json();
-		document.getElementById(a1.toString).src = URL.createObjectURL(json);
-	}
 
-	catchUserInfo().catch(error => {
-		console.log ('User does not exist');
-		console.error (error);
+const getUsers = (request, response) => {
+	catchUserInfo();
+
+	Users.find({},(err,data) => {
+		if (err){
+				console.log ('User does not exist');
+				response.error (error);
+		}
+		response.json(data);
 	});
+	
+	
+
 };
 
 const editUsers = (param, callback) => {
