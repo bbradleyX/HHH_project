@@ -43,6 +43,11 @@ const ContactSchema = new Schema({
 
 //create schema for users, for now just the name
 const UserSchema = new Schema({
+	googleid: {
+		type: String,
+		required: true
+	},
+	
 	name: {
 		type: String,
 		required: [true, 'name field is required']
