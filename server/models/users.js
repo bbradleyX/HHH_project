@@ -59,7 +59,7 @@ const UserSchema = new Schema({
 	phone_number: Number,
 
 	contacts: [ContactSchema]
-	users:[UserSchema]
+	//users: [UserSchema]
 })
 
 
