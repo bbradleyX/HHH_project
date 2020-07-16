@@ -1,19 +1,43 @@
+.type-dot {
+  color: rgb(21, 188, 28);
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+.frequency-dot {
+  color: rgb(255, 144, 41);
+  font-size: 1.5em;
+  vertical-align: middle;
+}
 .pals-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 25px;
-  }
-  .pal-name {
-    margin-bottom: -5px;
-  }
-  .pal {
-    padding-left: 15px;
-    background-color: aquamarine;
-    border-radius: 10px;
-    height: auto;
-    overflow: hidden;
-  }
-  .pal-props {
-    display: inline;
-    padding-right: 15px;
-  }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+.pal-name {
+  margin-bottom: -5px;
+}
+.pal {
+  padding-left: 15px;
+  background-color: white;
+  border-radius: 10px;
+  height: auto;
+  overflow: hidden;
+}
+.pal-props {
+  display: inline;
+  padding-right: 15px;
+}
+.pal-type-header {
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+.friends-header {
+  border-left: 0.4em solid rgb(248,29,123);
+}
+.family-header {
+  border-left: 0.4em solid rgb(248,154,29);
+}
+.professional-header {
+  border-left: 0.4em solid rgb(44,29,248);
+}

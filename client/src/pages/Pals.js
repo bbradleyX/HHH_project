@@ -15,29 +15,51 @@ function Pals() {
   return (
       <>
         <Header name={name} imageUrl={profileImageURL} />
+        
         <ul className="pals-list container">
+            
             <h1 className="heading">Take a look at all your Pals!</h1>
-            <PalContainer 
+            <h4 className="pal-type-header heading friends-header">Friends</h4>
+            <PalContainer
+                palID="1"
+                route="/pals/1" 
                 name="Bria Bradley"
                 type="Friends" 
                 frequency="Every Week" 
             />
-            <PalContainer 
+            <PalContainer
+                palID="2"
+                route="/pals/2" 
                 name="Camelia Betancourt" 
                 type="Friends" 
                 frequency="Every Week"
             />
-            <PalContainer 
+            <PalContainer
+                palID="3"
+                route="/pals/3" 
                 name="Diego Corterno"
                 type="Friends"
                 frequency="Every Week"
             />
             <PalContainer
+                palID="4"
+                route="/pals/4"
                 name="Meri Kavtelishvili"
                 type="Friends" 
                 frequency="Every Week" 
             />
+            <h4 className="pal-type-header heading family-header">Family</h4>
             <PalContainer 
+                palID="5"
+                route="/pals/5" 
+                name="Jaylene Trujillo" 
+                type="Family" 
+                frequency="Every Two Days" 
+            />
+            <h4 className="pal-type-header heading professional-header">Professional</h4>
+            <PalContainer
+                palID="6"
+                route="/pals/6"  
                 name="Suprada Urval" 
                 type="Professional" 
                 frequency="Every Week" 

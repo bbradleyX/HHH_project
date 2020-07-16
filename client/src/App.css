@@ -73,3 +73,8 @@ li {
   border-radius: 15px;
   margin-right: 5px;
 }
+.project-name {
+  font-family: 'Righteous', cursive;
+  color: rgb(47,128,237);
+  padding-left: 5px;
+}
