@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import './App.css'; 
+import axios from 'axios'
 import {Dropdown, Button} from 'react-bootstrap'
 import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/LoginPage'
@@ -45,6 +46,20 @@ class App extends React.Component{
       document.body.appendChild(script)
     }
 
+    onSignIn(){
+      console.log("ra traqshi qva unda")
+
+      axios.get('http://localhost:3001/api/users')
+      .then(response => console.log(response.data))
+
+      const authInstance = window.gapi.auth2.getAuthInstance()
+      const user = authInstance.currentUser.get()
+      var id_token = user.getAuthResponse().id_token;
+
+      console.log(id_token)
+
+    }
+
 //initializes google authorization API and loads a Google sign-in button
     initializeGoogleSignIn () {
       window.gapi.load('auth2', () => {
@@ -57,6 +72,9 @@ class App extends React.Component{
 
           authInstance.isSignedIn.listen((isSignedIn) => {
             this.setState({isSignedIn})
+            if (isSignedIn){
+              this.onSignIn()
+            }
           })
         })
         console.log("API inited")
