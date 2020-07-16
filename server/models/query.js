@@ -7,16 +7,24 @@ const Contacts = require ('../models/users/ContactSchema');
 //this function gets a list of all the users
 //will pass back either data or the error message to the callback function
 const getUsers = (callback) => {
-	try{
-		Users.find({}, 'name', callback)
-		Users.find({}, 'last_name', callback)
-		Users.find({}, 'email', callback)
-		Users.find({}, 'phone', callback)
+	Users.find({}, 'name', callback);
+	Users.find({}, 'last_name', callback);
+	Users.find({}, 'email', callback);
+ 	Users.find({}, 'phone', callback);
 
+	let a1 = [name, last_name,email,phone];
+	a1.sort();
+	
+	async function catchUserInfo(){
+		const response = await fetch(a1.values);
+		const data = await response.json();
+		document.getElementById(a1.toString).src = URL.createObjectURL(json);
 	}
-	catch{
-		console.error("Please fill in all required information");
-	}
+
+	catchUserInfo().catch(error => {
+		console.log ('User does not exist');
+		console.error (error);
+	});
 };
 
 const editUsers = (param, callback) => {
@@ -25,37 +33,40 @@ const editUsers = (param, callback) => {
 };
 
 const deleteUsers = (param, callback) => {
-	Contacts.create(param, callback)
+	Users.remove(param, callback)
 };
 
-//-------------------------------------------------------------Split----------------------------------------------------------------
+//------------------------------------------------------------Collection Split-----------------------------------------------------------
 
 const getContacts = (callback) => {
 	try{
 		Contacts.find({}, 'name', callback)
 		Contacts.find({}, 'last_name', callback)
-		Contacts.find({}, 'email', callback)
-		Contacts.find({}, 'phone', callback)
+		Contacts.find({}, 'category', callback)
+		Contacts.find({}, 'contact_method', callback)
 
 	}
 	catch{
-		console.error("Please fill in all required information");
+		console.error("Contact does not exist");
 	}
 };
 
 const addContacts = (param, callback) => {
-	Contacts.create(param, callback)
+	Contacts.create(name, callback)
+	Contacts.create(last_name, callback)
+	Contacts.create(category, callback)
+	Contacts.create(contact_method, callback)
 };
 
 const editContacts = (param, callback) => {
 	Contacts.update(name, callback)
 	Contacts.update(last_name, callback)
-	Contacts.update(, callback)
-	Contacts.update(lastname, callback)
+	Contacts.update(category, callback)
+	Contacts.update(method, callback)
 };
 
 const deleteContacts = (param, callback) => {
-	Contacts.create(param, callback)
+	Contacts.remove(param, callback)
 };
 
 
