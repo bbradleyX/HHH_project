@@ -10,8 +10,7 @@ router.get('/users', routes.getUsers);
 //will add a user in the users' collection
 router.post('/users', routes.addUser);
 
-
-//will verify the user
+//will verify the user or create a new user
 router.post('/auth', auth.verify)
 
 

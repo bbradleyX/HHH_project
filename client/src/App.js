@@ -46,18 +46,25 @@ class App extends React.Component{
       document.body.appendChild(script)
     }
 
+   
+
+    //once the user signs-in, will send a post request to the server 
+    //if server authenticates, will creatre a new user if one does not already exists
+    //else, should return to the log-In page
     onSignIn(){
-      console.log("ra traqshi qva unda")
-
-      axios.get('http://localhost:3001/api/users')
-      .then(response => console.log(response.data))
-
       const authInstance = window.gapi.auth2.getAuthInstance()
       const user = authInstance.currentUser.get()
       var id_token = user.getAuthResponse().id_token;
-
-      console.log(id_token)
-
+      const idToken = {
+        id_token: id_token
+      }
+      axios.post('http://localhost:3001/api/auth', idToken)
+      .then(response => console.log(response.data))
+      .catch((err) => {
+        console.log(err)
+        //state of logged in is false
+        //log out and redirect to the loginpage
+      })
     }
 
 //initializes google authorization API and loads a Google sign-in button
