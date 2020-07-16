@@ -6,7 +6,7 @@ import {Dropdown, Button} from 'react-bootstrap'
 import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/LoginPage'
 import Pals from './pages/Pals'
-
+import PalView from './pages/Palview'
 
 class App extends React.Component{
   constructor(props) {
@@ -19,14 +19,14 @@ class App extends React.Component{
   }
 
   //if user is signed in, renders Component, otherwise, renders LogInPage
-  ifUserSignedIn(Component) {
+  ifUserSignedIn(Component, props) {
     if (this.state.isSignedIn === null) {
       return (
           <h4>checking if you are signed in...</h4> 
         )
     }
     return this.state.isSignedIn ?
-      <Component/> :
+      <Component p={props}/> :
       <LoginPage isSignedIn={this.state.isSignedIn}/>
   }
 
@@ -107,11 +107,14 @@ class App extends React.Component{
      <BrowserRouter>
       <div className="App">
         <Switch>
+        
+        <Route path="/pals/:palID" render={() => 
+          this.ifUserSignedIn(PalView)}/>
+        {/* <Route path="/pals/:palID" children={<PalView />} /> */}
         <Route path="/pals" render={() =>
           this.ifUserSignedIn(Pals)}/>
         <Route path="/" render={() => 
           this.ifUserSignedIn(Dashboard)}/>
-        <Route exact path="/pals" component={Pals} />
         
         </Switch>
       </div>

@@ -14,10 +14,10 @@ function Header(props) {
                     src={logo}
                     width="30"
                     height="30"
-                    className="d-inline-block align-top profileImage"
+                    className="d-inline-block align-top"
                     alt="User Profile Image"
                 />
-                PalCheck
+                <span className="project-name">PAL CHECK</span>
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
