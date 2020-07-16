@@ -10,9 +10,24 @@ const Contacts = require ('../models/users/ContactSchema');
 
 
 
-const getUsers = (request, response) => {
-	
-};
+const getUsers = (callback) => {
+	app.get(Users, function(require,response) {
+		Users.find({}, function (err, users){
+			if (err){
+				response.send ('Contact does not exist');
+				next;
+			}
+			response.json(users);
+		});
+	});
+
+	app.post(Users, function(require, response) {
+		var user_info = new Users(require.body);
+		user_info.save(function(err, user_info){
+			response.json(user_info);
+		});
+	})
+}
 
 const editUsers = (param, callback) => {
 	Users.update(param, callback)
