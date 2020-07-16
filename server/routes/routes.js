@@ -81,10 +81,26 @@ const addContact = (req, res) => {
         });
     }
 
+    //returns all the contacts of a current user
+    const getContacts = function (req, res) {
+        const user_id = req.query.id
+        console.log("id issss:  " + user_id)
+        User.findOne({googleid: user_id})
+		.then(user => {
+            console.log(user.contacts)
+            res.send(user.contacts)
+        })
+        .catch(err => {
+        console.log('error is: ' + err)
+        res.status(400).json('Error: ' + err)
+        })
+    }
+
 const routes = {
 	getUsers: getUsers,
     addUser: addUser,
-    addContact: addContact
+    addContact: addContact,
+    getContacts: getContacts
 }
 
 module.exports = routes;
