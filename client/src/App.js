@@ -71,6 +71,7 @@ class App extends React.Component{
         console.log(err)
         //state of logged in is false
         //log out and redirect to the loginpage
+        //pop up an error message 
         this.signOut()
         this.setState({isSignedIn: false})
         return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
