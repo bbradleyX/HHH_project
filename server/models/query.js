@@ -6,6 +6,8 @@ const Contacts = require ('../models/users/ContactSchema');
 
 //this function gets a list of all the users
 //will pass back either data or the error message to the callback function
+
+
 const getUsers = (callback) => {
 	Users.find({}, 'name', callback);
 	Users.find({}, 'last_name', callback);
