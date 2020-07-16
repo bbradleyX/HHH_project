@@ -57,25 +57,10 @@ const addContact = (req, res) => {
 	const email = req.body.email
 	const phone_number = (Number)(req.body.phone_number)
 
-	// const newContact = new Contact(
-	// 	{
-	// 		name, 
-	// 		last_name,
-	// 		category,
-	// 		general_notes,
-	// 		contact_method,
-	// 		email,
-	// 		phone_number
-	// 	}
-	// )
 
 	User.findOne({googleid: user_id})
 		.then(user => {
-			console.log('hellooooo thereeeeeeeeeeeeeeee notice meeeeee ' + user)
-            //add the new contact and save
-            
-            const name = user.name
-            console.log('name isssssssssssssssssssssssssss' + name)
+            //add a new contact
 			user.contacts.push({name: name, last_name: last_name, category: category})
             user.save()
                 .then(() => res.json('contact added'))
