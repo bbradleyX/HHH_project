@@ -10,6 +10,12 @@ class LoginButton extends React.Component {
       }
       document.body.appendChild(script)
     } 
+
+    onSuccess(googleUser) {
+      console.log('why does nothiiiiiiiiiiing fucking gets logggggggeeeeeeeeeed u stupid ass bitch')
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
     initalizeGoogleSignIn() {
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init({
@@ -18,11 +24,11 @@ class LoginButton extends React.Component {
         console.log('Api inited')
         window.gapi.load('signin2', () => {
           const params = {
-            onsuccess: () => {
-              console.log('User has finished signing in')
-            }
+            'onsuccess': this.onSuccess
           }
-          window.gapi.signin2.render('loginButton', params)
+          window.gapi.signin2.render('loginButton', {
+            'onsuccess': this.onSuccess
+          })
         })
       })
     }
