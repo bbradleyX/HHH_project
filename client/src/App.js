@@ -46,6 +46,13 @@ class App extends React.Component{
       document.body.appendChild(script)
     }
 
+
+    signOut() {
+      var auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
    
 
     //once the user signs-in, will send a post request to the server 
@@ -64,6 +71,11 @@ class App extends React.Component{
         console.log(err)
         //state of logged in is false
         //log out and redirect to the loginpage
+        this.signOut()
+        this.setState({isSignedIn: false})
+        return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
+
+
       })
     }
 
