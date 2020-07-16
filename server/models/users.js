@@ -41,7 +41,7 @@ const ContactSchema = new Schema({
 
 	email: String,
 
-	phone_number: Number,
+	phone_number: String,
 
 	Logs: [LogSchema]
 })
