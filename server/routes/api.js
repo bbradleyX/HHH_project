@@ -11,7 +11,10 @@ router.get('/users', routes.getUsers);
 router.post('/users', routes.addUser);
 
 //will verify the user and will create a new user if not already exists
-router.post('/auth', auth.verify)
+router.post('/auth', auth.verify);
+
+//adding connections(this is for testing - replace with Bria's later)
+router.post('/addContact', routes.addContact)
 
 
 

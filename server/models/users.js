@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const connectionTypes = ["Friend", "Family", "Professional"]
+const connectMethod = ["Text", "Messanger", "Email", "Call"]
 
 const LogSchema = new Schema({
 	date: {
@@ -23,7 +25,9 @@ const ContactSchema = new Schema({
 	},
 
 	category: {
-		enum: ['Friend', 'Family', 'Professional'],
+		type: String, 
+		enum: connectionTypes,
+		required: [true, 'connection type is required']
 	},
 
 	general_notes: {
@@ -31,7 +35,8 @@ const ContactSchema = new Schema({
 	},
 
 	contact_method: {
-		enum: ['Text', 'Messanger', 'Email', 'Call']
+		type: String,
+		enum: connectMethod
 	},
 
 	email: String,
@@ -75,3 +80,4 @@ const UserSchema = new Schema({
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
+//module.exports = Contact;
