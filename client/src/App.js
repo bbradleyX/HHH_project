@@ -68,13 +68,17 @@ class App extends React.Component{
       axios.post('http://localhost:3001/api/auth', idToken)
       .then(response => console.log(response.data))
       .catch((err) => {
+        //To Do:
+        //Error Handling!!
         console.log(err)
         //state of logged in is false
         //log out and redirect to the loginpage
         //pop up an error message 
-        this.signOut()
-        this.setState({isSignedIn: false})
-        return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
+        // this.signOut()
+        // this.setState({isSignedIn: false})
+        // return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
+
+        //
 
 
       })
