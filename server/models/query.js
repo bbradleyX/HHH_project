@@ -5,7 +5,6 @@ const Contacts = require ('../models/users/ContactSchema');
 
 //this function gets a list of all the users
 //will pass back either data or the error message to the callback function
-<<<<<<< HEAD
 const getUsers = app.get('/users', function(req,res) {
 		Users.find({}, function (err, users){
 			if (err){
@@ -66,18 +65,13 @@ app.post('/contacts', function(req,res) {
 	var contact_info = new Contacts(req.body);
 	user_info.save(function(err, contact_info){
 		if (err){
-			res.send ('Error saving us contact fo');
+			res.send ('Error saving contact info');
 			next;
 		}
 		res.json(contact_info);
 	});
 })
 })
-=======
-const getUsers = (callback) => {
-  Users.find({}, callback)
-};
->>>>>>> 647e9fdaf235b5dabf396e4d6a0963022fc82cc9
 
 
 const addContacts = (param, callback) => {
@@ -119,7 +113,6 @@ const deleteContacts = app.delete('/contact/:id', function(req, res) {
 const queries = {
 	//User Functions
 	getUsers: getUsers,
-<<<<<<< HEAD
 	editUsers: editUsers,
 	deleteUsers: deleteUsers,
 
@@ -128,9 +121,6 @@ const queries = {
 	addContacts: addContacts,
 	editContacts: editContacts,
 	deleteContacts: deleteContacts
-=======
-	addUser: addUser,
->>>>>>> 647e9fdaf235b5dabf396e4d6a0963022fc82cc9
 }
 
 module.exports = queries;
