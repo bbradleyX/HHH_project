@@ -79,8 +79,6 @@ class App extends React.Component{
         // return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
 
         //
-
-
       })
     }
 
