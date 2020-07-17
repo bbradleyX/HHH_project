@@ -58,7 +58,7 @@ const UserSchema = new Schema({
 	//true vs false??
 	phone_number: Number,
 
-	contacts: [ContactSchema]
+	contacts: [ContactSchema] //,
 	//users: [UserSchema]
 })
 
