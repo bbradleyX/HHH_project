@@ -1,6 +1,7 @@
 const express = require ('express')
 const Users = require('../models/users');
 const Contacts = require ('../models/users/ContactSchema');
+const User = require('../models/users');
 //const Contacts = require ('../models/users');
 
 
@@ -11,31 +12,56 @@ const Contacts = require ('../models/users/ContactSchema');
 
 
 const getUsers = (callback) => {
-	app.get(Users, function(require,response) {
+	app.get('/user', function(req,res) {
 		Users.find({}, function (err, users){
 			if (err){
-				response.send ('Contact does not exist');
+				res.send ('User does not exist');
 				next;
 			}
-			response.json(users);
+			res.json(users);
 		});
-	});
+	})
 
-	app.post(Users, function(require, response) {
-		var user_info = new Users(require.body);
+	app.post('/user', function(req,res) {
+		var user_info = new Users(req.body);
 		user_info.save(function(err, user_info){
-			response.json(user_info);
+			if (err){
+				res.send ('Error saving user info');
+				next;
+			}
+			res.json(user_info);
 		});
 	})
 }
 
 const editUsers = (param, callback) => {
-	Users.update(param, callback)
-	Users.update(param, callback)
+	//Users.update(param, callback)
+
+	app.put (fetch(User, document.getElementById), function(req,res){
+		var conditions = {id:req.params.id};
+		Users.update(conditions,req.body).then(doc => {
+			if (!doc){
+				return res.status(404).end();
+			}
+			return res.status(200).json(doc);
+		})
+		.catch(err => next (err));
+	})
 };
 
 const deleteUsers = (param, callback) => {
-	Users.remove(param, callback)
+	//Users.remove(param, callback)
+
+	app.delete('/user/:id', function(req, res) {
+		User.findByIdandRemove(req.param.id).exec()
+		.then(doc => {
+			if(!doc) {
+				return res.status(404).end();
+			}
+			return res.status(200).end();
+		})
+		.catch(err => next(err));
+	})
 };
 
 //------------------------------------------------------------Collection Split-----------------------------------------------------------
@@ -87,3 +113,4 @@ const queries = {
 }
 
 module.exports = queries;
+//app.listen(3000)
