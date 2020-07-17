@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../image/child_care.png"
 import { Dropdown, Navbar, Nav, NavDropdown, Button, NavItem } from "react-bootstrap";
 
 // import logo from "insert logo png here";
@@ -8,24 +9,35 @@ function Header(props) {
     return (
         <>
         <Navbar className="header">
-            <Navbar.Brand href="/">PalCheck</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
+            <Navbar.Brand href="/">
                 <img
-                    src={props.imageUrl}
+                    src={logo}
                     width="30"
                     height="30"
                     className="d-inline-block align-top profileImage"
                     alt="User Profile Image"
                 />
-                <Dropdown>
-                    <Dropdown.Toggle as="a">
-                        {props.name}
-                    </Dropdown.Toggle>
+                PalCheck
+            </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+                
+                <Dropdown className="dash-drop">
+                    <Dropdown.Toggle className="profile-drop" as="a">
+                        <img
+                            src={props.imageUrl}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top profile-image"
+                            alt="User Profile Image"
+                        />
+                        <span className="profile-name">{props.name}</span>
+                    </Dropdown.Toggle >
                     <Dropdown.Menu className="dropdown-menu-right">
                         <Dropdown.Item onClick="#profile">Profile</Dropdown.Item>
                         <Dropdown.Item onClick={window.gapi.auth2.getAuthInstance().signOut}>Sign out</Dropdown.Item>
                     </Dropdown.Menu>
+                    
                 </Dropdown>
             </Navbar.Collapse>
         </Navbar>

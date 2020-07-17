@@ -1,15 +1,12 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import './App.css'; 
+import axios from 'axios'
 import {Dropdown, Button} from 'react-bootstrap'
 import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/LoginPage'
 import Pals from './pages/Pals'
 
-
-//this will be a Dashboard page 
-//TO DO: figure out how to make a separate page and import here
-//To Do: change hardcoded name with my name
 
 class App extends React.Component{
   constructor(props) {
@@ -49,19 +46,55 @@ class App extends React.Component{
       document.body.appendChild(script)
     }
 
+
+    signOut() {
+      var auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+   
+
+    //once the user signs-in, will send a post request to the server 
+    //if server authenticates, will creatre a new user if one does not already exists
+    //else, should return to the log-In page
+    onSignIn(){
+      const authInstance = window.gapi.auth2.getAuthInstance()
+      const user = authInstance.currentUser.get()
+      var id_token = user.getAuthResponse().id_token;
+      const idToken = {
+        id_token: id_token
+      }
+      axios.post('http://localhost:3001/api/auth', idToken)
+      .then(response => console.log(response.data))
+      .catch((err) => {
+        console.log(err)
+        //state of logged in is false
+        //log out and redirect to the loginpage
+        //pop up an error message 
+        this.signOut()
+        this.setState({isSignedIn: false})
+        return(<LoginPage isSignedIn={this.state.isSignedIn}/>)
+
+
+      })
+    }
+
 //initializes google authorization API and loads a Google sign-in button
     initializeGoogleSignIn () {
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init({
           client_id: '337302123458-qhagbkm42i1k1mhrcv8qd9khorn5p7mb.apps.googleusercontent.com'
         }).then (() => {
-          const authInstance = window.gapi.auth2.
-          getAuthInstance()
+          const authInstance = window.gapi.auth2.getAuthInstance()
           const isSignedIn = authInstance.isSignedIn.get()
           this.setState({isSignedIn})
 
-          authInstance.isSignedIn.listen(isSignedIn => {
+          authInstance.isSignedIn.listen((isSignedIn) => {
             this.setState({isSignedIn})
+            if (isSignedIn){
+              this.onSignIn()
+            }
           })
         })
         console.log("API inited")

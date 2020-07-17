@@ -8,7 +8,6 @@ function PalContainer(props) {
                 <h6 className="pal-props">• {props.type}</h6>
                 <h6 className="pal-props">• {props.frequency}</h6>
             </div>
-            <h6>{props.notes}</h6>
             
             
         </li>

@@ -53,56 +53,23 @@ a.nav-link {
   text-decoration: inherit;
 }
 
-.profileImage {
-  border-radius: 15px;
-  margin-right: 5px;
-}
 
 li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dash-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  align-items: center;
-  justify-content: center;
-}
-.dash-item {
-  text-align: center;
-  height: 250px;
-  padding-top: 60px;
-  background-color: aquamarine;
-  border-radius: 15px;
-  
-}
-.dash-item:hover {
-  background-color: rgb(87, 185, 153);
-  transition: 0.3s;
-  cursor: pointer;
-}
+
 .heading{
   grid-column: 1/3; 
   text-align: start;
 }
-.pals-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-}
-.pal-name {
-  margin-bottom: -5px;
-}
-.pal {
-  padding-left: 15px;
-  background-color: aquamarine;
-  border-radius: 10px;
-  height: 95px;
-  overflow: hidden;
-}
-.pal-props {
+.profile-drop {
   display: inline;
-  padding-right: 15px;
+  vertical-align: middle;
+  padding-top: 5px;
+}
+.profile-image {
+  border-radius: 15px;
+  margin-right: 5px;
 }
