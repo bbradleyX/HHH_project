@@ -7,12 +7,7 @@ const User = require('../models/users');
 
 //this function gets a list of all the users
 //will pass back either data or the error message to the callback function
-
-
-
-
-const getUsers = (callback) => {
-	app.get('/user', function(req,res) {
+const getUsers = app.get('/user', function(req,res) {
 		Users.find({}, function (err, users){
 			if (err){
 				res.send ('User does not exist');
@@ -20,7 +15,6 @@ const getUsers = (callback) => {
 			}
 			res.json(users);
 		});
-	})
 
 	app.post('/user', function(req,res) {
 		var user_info = new Users(req.body);
@@ -32,27 +26,22 @@ const getUsers = (callback) => {
 			res.json(user_info);
 		});
 	})
-}
+})
 
-const editUsers = (param, callback) => {
+const editUsers = app.put (fetch(User, document.getElementById), function(req,res) {
 	//Users.update(param, callback)
-
-	app.put (fetch(User, document.getElementById), function(req,res){
-		var conditions = {id:req.params.id};
-		Users.update(conditions,req.body).then(doc => {
-			if (!doc){
-				return res.status(404).end();
-			}
-			return res.status(200).json(doc);
-		})
-		.catch(err => next (err));
+	var conditions = {id:req.params.id};
+	Users.update(conditions,req.body).then(doc => {
+		if (!doc){
+			return res.status(404).end();
+		}
+		return res.status(200).json(doc);
 	})
-};
+	.catch(err => next (err));
+})
 
-const deleteUsers = (param, callback) => {
+const deleteUsers = app.delete('/user/:id', function(req, res) {
 	//Users.remove(param, callback)
-
-	app.delete('/user/:id', function(req, res) {
 		User.findByIdandRemove(req.param.id).exec()
 		.then(doc => {
 			if(!doc) {
@@ -62,7 +51,6 @@ const deleteUsers = (param, callback) => {
 		})
 		.catch(err => next(err));
 	})
-};
 
 //------------------------------------------------------------Collection Split-----------------------------------------------------------
 
