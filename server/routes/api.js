@@ -24,6 +24,23 @@ router.post('/addContact', contRoutes.addContact);
 //gets the current user's contacts (have to pass in id)
 router.get('/getContacts', contRoutes.getContacts)
 
+//adds logs, need to pass in the current user id, contact id for which adding logs, 
+//and time (optionally notes as well) in the body 
+router.post('/addLogs', logsRoutes.addLogs)
+
+
+//gets all the logs for a current user with a specific contact - need to pass in 
+//the current user google_id as user_id and the contact_id
+router.get('/getLogs', logsRoutes.getLogs)
+
+//edits the given log with a specific id for a current user with a specified contact
+//need to pass in google_id of the current user, need to pass in the contact id and the log_id 
+//that needs to be modified as well as the new log details - all in the body of the request
+router.put('/editLogs', logsRoutes.editLogs)
+
+//deletes a log with the specified id (need to pass in current user, and the connection)
+router.delete('/deleteLogs', logsRoutes.deleteLogs)
+
 
 
 module.exports = router;
