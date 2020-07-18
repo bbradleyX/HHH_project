@@ -15,6 +15,12 @@ router.get('/users', routes.getUsers);
 //do not use this directly unless testing
 router.post('/users', routes.addUser);
 
+//edits user with updated fields (pass in all the fields except for contacts and email)
+router.put('/users', routes.editUser);
+
+//delets a user in the url specified parameter id
+router.delete('/users', routes.deleteUser);
+
 //will verify the user and will create a new user if not already exists
 router.post('/auth', auth.verify);
 
