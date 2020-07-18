@@ -1,5 +1,8 @@
 const User = require('../models/users');
 
+//To Dos:
+//1. error handling if request is not valid or smt like that
+
 
 //adds contact to the given user's contact list (Should pass in the current user's google_id 
 //and info about the contact that is being added)

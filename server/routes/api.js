@@ -2,7 +2,7 @@ const express = require ('express');
 const router = express.Router();
 
 //importing route functions
-const routes = require('./routes');
+const routes = require('./userRoutes');
 const contRoutes = require('./contacts');
 const logsRoutes = require('./logs');
 const auth = require('./auth');

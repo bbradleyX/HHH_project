@@ -43,7 +43,7 @@ const ContactSchema = new Schema({
 
 	phone_number: String,
 
-	Logs: [LogSchema]
+	logs: [LogSchema]
 })
 
 //create schema for users, for now just the name

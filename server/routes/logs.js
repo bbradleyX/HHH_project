@@ -1,5 +1,8 @@
 const User = require('../models/users');
 
+//To Dos:
+//1. error handling if request is not valid or smt like that
+
 //adding logs
 const addLogs = (req, res) => {
     //getting information from the body of the request
@@ -15,7 +18,7 @@ const addLogs = (req, res) => {
             const contact = contacts.find(element => element._id == contact_id)
             if (contact) {
                 //then add a new log
-                contact.Logs.push({
+                contact.logs.push({
                     date: date, 
                     notes: notes
                 })
@@ -44,8 +47,8 @@ const getLogs = (req, res) => {
             let contacts = user.contacts
             const contact = contacts.find(element => element._id == contact_id)
             console.log('success')
-            console.log(contact.Logs)
-            res.send(contact.Logs)
+            console.log(contact.logs)
+            res.send(contact.logs)
         })
         .catch(err => {
             console.log('error is: ' + err)
@@ -69,7 +72,7 @@ const editLogs = (req, res) => {
             const contact = contacts.find(element => element._id == contact_id)
             if (contact) {
                 //then add a new log
-                let logs = contact.Logs
+                let logs = contact.logs
                 const log = logs.find(element => element._id == log_id)
                 if (log){
                      //change the object
@@ -106,7 +109,7 @@ const deleteLogs = (req, res) => {
             const contact = contacts.find(element => element._id == contact_id)
             if (contact) {
                 //then add a new log
-                let logs = contact.Logs
+                let logs = contact.logs
                 for(var i = 0; i < logs.length; i++) {
                     if(logs[i]._id == log_id) {
                         logs.splice(i, 1);
