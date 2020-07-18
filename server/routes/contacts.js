@@ -5,7 +5,7 @@ const User = require('../models/users');
 //and info about the contact that is being added)
 const addContact = (req, res) => {
     //get the fields of the new contact
-    const user_id = req.body.id
+    const user_id = req.body.user_id
     console.log('user id issss ' +  user_id)
 	const name = req.body.name
 	const last_name = req.body.last_name
@@ -43,6 +43,7 @@ const addContact = (req, res) => {
         console.log("id issss:  " + user_id)
         User.findOne({googleid: user_id})
 		.then(user => {
+            console.log(user.contacts)
             console.log(user.contacts)
             res.send(user.contacts)
         })
