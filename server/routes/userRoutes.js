@@ -9,7 +9,7 @@ const addUser = function(req, res) {
     const phone_number = req.body.phone_number
 
     const newUser = new User({
-        google_id: id,
+        googleid: id,
         email: email,
         name: name,
         last_name: last_name,
@@ -29,10 +29,40 @@ const getUsers = (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 }
 
+//edits a user, cannot edit the id or email for now (o.w should prob add a confirmation step later) 
+const editUser = (req, res) => {
+    const name = req.body.name
+    const last_name = req.body.last_name
+    const phone_number = req.body.phone_number
+    const google_id = req.body.user_id
+
+    User.findOne({googleid: google_id})
+        .then(user => {
+            user.name = name
+            user.last_name = last_name
+            user.phone_number = phone_number      
+            
+            user.save()
+            .then(() => res.json('Sucessfully updated!'))
+            .catch(err => res.status(400).json('Error: ' + err));
+        }) 
+        .catch(err => {
+            res.status(400).json('Error: ' + err)
+        })
+}
+
+//deletes a user, pass in id in parameters
+const deleteUser = (req, res) => {
+    User.findByIdAndDelete(req.query.id)
+      .then(() => res.json('User deleted.'))
+      .catch(err => res.status(400).json('Error: ' + err));
+}
 
 const routes = {
 	getUsers: getUsers,
     addUser: addUser,
+    editUser: editUser,
+    deleteUser: deleteUser
 }
 
 module.exports = routes;
