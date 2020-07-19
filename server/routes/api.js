@@ -6,6 +6,7 @@ const routes = require('./userRoutes');
 const contRoutes = require('./contacts');
 const logsRoutes = require('./logs');
 const auth = require('./auth');
+const shakerRoutes = require('./shaker')
 
 //This will output all the users' names that are 
 //in the database from the Users collection
@@ -46,6 +47,9 @@ router.put('/editLogs', logsRoutes.editLogs)
 
 //deletes a log with the specified id (need to pass in current user, and the connection)
 router.delete('/deleteLogs', logsRoutes.deleteLogs)
+
+//gets a random contact of the current user passed as the parameter
+router.get('/shake', shakerRoutes.shaker)
 
 
 
