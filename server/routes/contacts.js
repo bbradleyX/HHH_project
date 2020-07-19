@@ -46,8 +46,6 @@ const addContact = (req, res) => {
         console.log("id issss:  " + user_id)
         User.findOne({googleid: user_id})
 		.then(user => {
-            console.log(user.contacts)
-            console.log(user.contacts)
             res.send(user.contacts)
         })
         .catch(err => {
