@@ -7,10 +7,6 @@ function Popup(props) {
     const name = props.name
     const last_name = props.last_name
 
-    console.log(name)
-    console.log(last_name)
-    console.log(category)
-
     if (category == 'Family'){
         category = 'family member'
     } else if (category == 'Professional'){
@@ -18,6 +14,14 @@ function Popup(props) {
     } else {
         category = 'friend'
     }
+    let text = ''
+    if (props.no_friends) {
+        text = 'Add more Pals to see suggestions'
+    } else {
+        text = "Why don't you reach out to your " + category + ", " +
+        name + " " + last_name + ",  today?"
+    }
+
     return (
       <Modal
         {...props}
@@ -32,7 +36,7 @@ function Popup(props) {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Why don't you reach out to your {category}, {name} {last_name}, today?
+            {text}
           </p>
         </Modal.Body>
       </Modal>

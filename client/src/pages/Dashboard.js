@@ -26,12 +26,9 @@ class Dashboard extends React.Component {
         modalShow: false,
         random_pal_name: '',
         random_pal_last_name: '',
-        random_pal_category: ''
+        random_pal_category: '',
+        no_friends: true
     }  
-}
-
-componentDidMount(){
-
 }
 
   goToPals() {
@@ -42,6 +39,8 @@ componentDidMount(){
     console.log('id is ' + this.state.id)
     axios.get('http://localhost:3001/api/shake?id=' + this.state.id)
       .then(response => { 
+        if (response.data.name)
+        this.setState({no_friends: false})
         this.setState({random_pal_name: response.data.name,
                        random_pal_last_name: response.data.last_name,
                        random_pal_category: response.data.random_pal_category})
@@ -98,13 +97,13 @@ componentDidMount(){
                       name={this.state.random_pal_name}
                       last_name={this.state.random_pal_last_name}
                       category={this.state.random_pal_category}
+                      no_friends={this.state.no_friends}
               />
   
           </ul>
         </>
     )
   }
-  
 }
 
 export default Dashboard;
