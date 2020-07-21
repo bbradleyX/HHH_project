@@ -59,7 +59,7 @@ const addContact = (req, res) => {
      const editContacts = function (req, res) {
         //Users.update(param, callback)
         var conditions = {id:req.params.id};
-        Users.update(conditions,req.body).then(doc => {
+        User.update(conditions,req.body).then(doc => {
             if (!doc){
                 return res.status(404).end();
             }
