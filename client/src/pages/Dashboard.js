@@ -1,10 +1,7 @@
 import React from "react"
-import {Dropdown, Button} from 'react-bootstrap'
 import Header from "../components/Header";
 import "../css/dash.css"
 import Dashcard from "../components/Dashcard.js"
-import { Link } from "react-router-dom";
-import { render } from "react-dom";
 import book from "../image/book.png";
 import pencil from "../image/pencil.png";
 import piechart from "../image/piechart.png";
@@ -29,7 +26,7 @@ class Dashboard extends React.Component {
           <ul className="dash-list container">
               <h1 className="heading">Welcome {firstName}! What would you like to do today?</h1>
               <Dashcard type="dash-item journal-card"
-                title="Journal" route="#journal" 
+                title="Journal" route="/journal" 
                 imageSrc={pencil} imageWidth="74" imageHeight="115"
                 description="Fill in the progress of your conversations."
               />
