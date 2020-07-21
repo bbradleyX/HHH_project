@@ -12,31 +12,121 @@ const sendReminders = (req, res) => {
                 const profess = []
                 const contacts = user.contacts
                 contacts.forEach(contact => {
-                    console.log(contact)
                     const freq = contact.frequency
                     const logs = contact.logs
-                    console.log(logs)
-                    const dates = logs.map(log => (Date)(log.date))
-                    dates.forEach(date => console.log(date))
-                    const latest_date = Math.max(dates)
-                    console.log(latest_date)
-
-
+                    const dates = logs.map(log => log.date.getTime())
+                    const latest_date = Math.max(...dates) 
+                    if (checkIfOvertime(freq, latest_date)) {
+                        const toCall = {
+                            name: contact.name,
+                            last_name: contact.last_name
+                        }
+                        if (contact.category == 'Friend'){
+                            friends.push(toCall)
+                        } else if (contact.category == 'Family'){
+                            family.push(toCall)
+                        } else {
+                            profess.push(toCall)
+                        }
+                    }
                 })
+                var needsReminder = false;
+                if (friends.length > 0 || family.length > 0 || profess.length > 0) {
+                    needsReminder = true
+                }
+                if (needsReminder) {
+                    const text = makeText(friends, family, profess)
+                    console.log(text)
+                }
             })
-            //get the different categories for which they need to be reminded
-
-            //remind them using sendEmail:)
-        
-        
         })
         .catch(err => res.status(400).json('Error: ' + err))
 }
+const makeText = (friends, family, profess) => {
 
+    let text = 'Hi, thank you for using PalCheck! \n' + "Based on your customizable reminders, " + 
+    "we wanted to remind you to reach out to your "
+    
+    if (friends.length > 0){
+        text = text + 'friends: \n'
+        friends.forEach(friend => {
+            text = text + " " + friend.name + " " + friend.last_name + ","
+        })
+        text = text.substring(0, text.length - 1);
+        text = text + '\n'
+        needsReminder = true;
+    }
+    if (family.length > 0){
+        text = text + 'family: \n'
+        family.forEach(member => {
+            text = text + member.name + " " + member.last_name + + ","
+        })
+        text = text.substring(0, text.length - 1);
+        text = text + '\n'
+        needsReminder = true;
+    }
+    if (profess.length > 0){
+        text = text + 'professional network: \n'
+        profess.forEach(prof => {
+            text = text + prof.name + " " + prof.last_name + + ","
+        })
+        text = text.substring(0, text.length - 1);
+        text = text + '\n'
+        needsReminder = true;
+    }
 
-const sendEmail = (req, res) => {
-        const to = req.body.to
-        const text = req.body.text
+    return text
+}
+const checkIfOvertime = (freq, latest_date) => {
+    const today = Date.now()
+    var diff = (today - latest_date)/(1000*60*60*24)
+    console.log('diff is: ' + diff)
+
+    if (freq == "1"){
+       if (diff >= 1) {
+           return true
+       } else {
+           return false
+       }             
+    } else if (freq == "2"){
+        if (diff >= 3) {
+            return true
+        } else {
+            return false
+        } 
+    } else if (freq == "3"){
+        if (diff >= 7) {
+            return true
+        } else {
+            return false
+        } 
+    } else if (freq == "4"){
+        if (diff >= 14) {
+            return true
+        } else {
+            return false
+        } 
+    } else if (freq == "5"){
+        if (diff >= 21) {
+            return true
+        } else {
+            return false
+        } 
+    } else if (freq === "6"){
+        if (diff >= 30) {
+            return true
+        } else {
+            return false
+        } 
+    } else {
+        if (diff >= 60) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+const sendEmail = (text, to) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
