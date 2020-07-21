@@ -9,7 +9,6 @@ const User = require('../models/users');
 const addContact = (req, res) => {
     //get the fields of the new contact
     const user_id = req.body.user_id
-    console.log('user id is ' +  user_id)
 	const name = req.body.name
 	const last_name = req.body.last_name
 	const category = req.body.category
@@ -26,11 +25,11 @@ const addContact = (req, res) => {
     user.contacts.push({name: name, 
                         last_name: last_name, 
                         category: category, 
+                        frequency: frequency,
                         general_notes: general_notes,
                         contact_method: contact_method,
                         email: email,
                         phone_number: phone_number,
-                        frequency: frequency
                     })
             user.save()
                 .then(() => res.json('contact added'))

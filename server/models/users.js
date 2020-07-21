@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const connectionTypes = ["Friend", "Family", "Professional"]
 //1 = every day, 2 = every 3 days, 3 = every week, 4 = every 2 weeks,
 //5 = every 3 weeks, 6 = every month, 7 = every 2 months
-const frequency = ['1', '2', '3', '4', '5', '6', '7']
+const freq = ["1", "2", "3", "4", "5", "6", "7"]
 
 const LogSchema = new Schema({
 	date: {
@@ -34,7 +34,7 @@ const ContactSchema = new Schema({
 
 	frequency: {
 		type: String,
-		enum: frequency,
+		enum: freq,
 		required: [true, 'connection frequency is required']
 	},
 
