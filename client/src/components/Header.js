@@ -33,7 +33,6 @@ function Header(props) {
                         <span className="profile-name">{props.name}</span>
                     </Dropdown.Toggle >
                     <Dropdown.Menu className="dropdown-menu-right">
-                        <Dropdown.Item onClick="#profile">Profile</Dropdown.Item>
                         <Dropdown.Item onClick={window.gapi.auth2.getAuthInstance().signOut}>Sign out</Dropdown.Item>
                     </Dropdown.Menu>
                     
@@ -49,7 +48,6 @@ function Header(props) {
                 <Nav.Link href="/journal">Journal</Nav.Link>
                 <Nav.Link href="/pals">Pals</Nav.Link>
                 <Nav.Link href="#overview">Overview</Nav.Link>
-                <Nav.Link href="#shaker">Shaker</Nav.Link>
             </Navbar.Collapse>
         </Navbar>
         </>
