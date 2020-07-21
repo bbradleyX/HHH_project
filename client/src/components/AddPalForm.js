@@ -17,7 +17,8 @@ class AddPalForm extends React.Component {
           email: '',
           phone_number: '',
           contact_method: '',
-          general_notes: ''
+          general_notes: '',
+          frequency: '3'
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,6 +72,14 @@ class AddPalForm extends React.Component {
           <label>
             Last Name: 
             <input type="text" value={this.state.last_name} onChange={this.handleChange} name="last_name" required/>
+          </label>
+          <label>
+            Remind me every: 
+            <select value={this.state.category} onChange={this.handleChange} name="category" required>
+              <option value="Friends">friends</option>
+              <option value="Family">family</option>
+              <option value="Professional">professional</option>
+            </select>
           </label>
           <label>
             Connection Type: 

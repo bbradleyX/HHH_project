@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const connectionTypes = ["Friend", "Family", "Professional"]
-const connectMethod = ["Text", "Messanger", "Email", "Call"]
+//1 = every day, 2 = every 3 days, 3 = every week, 4 = every 2 weeks,
+//5 = every 3 weeks, 6 = every month, 7 = every 2 months
+const freq = ["1", "2", "3", "4", "5", "6", "7"]
 
 const LogSchema = new Schema({
 	date: {
@@ -30,13 +32,18 @@ const ContactSchema = new Schema({
 		required: [true, 'connection type is required']
 	},
 
+	frequency: {
+		type: String,
+		enum: freq,
+		required: [true, 'connection frequency is required']
+	},
+
 	general_notes: {
 		type: String
 	},
 
 	contact_method: {
-		type: String,
-		enum: connectMethod
+		type: String
 	},
 
 	email: String,
@@ -71,7 +78,6 @@ const UserSchema = new Schema({
 	//validate somehow later
 	//true vs false??
 	phone_number: Number,
-
 	contacts: [ContactSchema]
 })
 
