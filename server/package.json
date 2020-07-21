@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "google-auth-library": "^6.0.5",
     "google-oauth-jwt": "^0.2.0",
-    "mongoose": "^5.9.21"
+    "mongoose": "^5.9.21",
+    "nodemailer": "^6.4.10"
   }
 }
