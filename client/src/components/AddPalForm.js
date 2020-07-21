@@ -93,7 +93,7 @@ class AddPalForm extends React.Component {
           <label>
             Connection Type: 
             <select value={this.state.category} onChange={this.handleChange} name="category" required>
-              <option value="Friends">friends</option>
+              <option value="Friend">friends</option>
               <option value="Family">family</option>
               <option value="Professional">professional</option>
             </select>
