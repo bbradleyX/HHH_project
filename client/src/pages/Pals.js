@@ -32,12 +32,7 @@ class Pals extends React.Component {
                 data: response.data
             });
             console.log(this.state.data)
-            let items = []
-            
-            
         })
-        
-        
     }
 
     render() {
