@@ -8,6 +8,7 @@ const User = require('../models/users');
 //and info about the contact that is being added)
 const addContact = (req, res) => {
     //get the fields of the new contact
+    console.log(JSON.stringify(req.body))
     const user_id = req.body.user_id
 	const name = req.body.name
 	const last_name = req.body.last_name
@@ -22,6 +23,8 @@ const addContact = (req, res) => {
 	User.findOne({googleid: user_id})
 		.then(user => {
             //add a new contact
+            console.log("name: " + name)
+            
     user.contacts.push({name: name, 
                         last_name: last_name, 
                         category: category, 

@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "../image/child_care.png"
-import { Dropdown, Navbar, Nav, NavDropdown, Button, NavItem } from "react-bootstrap";
+import { Dropdown, Navbar, Nav } from "react-bootstrap";
 
 // import logo from "insert logo png here";
 
@@ -47,7 +46,7 @@ function Header(props) {
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-center">
                 <Nav.Link href="/">Dashboard</Nav.Link>
-                <Nav.Link href="#journal">Journal</Nav.Link>
+                <Nav.Link href="/journal">Journal</Nav.Link>
                 <Nav.Link href="/pals">Pals</Nav.Link>
                 <Nav.Link href="#overview">Overview</Nav.Link>
                 <Nav.Link href="#shaker">Shaker</Nav.Link>
