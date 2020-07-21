@@ -57,26 +57,15 @@ const addContact = (req, res) => {
 
      //returns updated contact info to the current user
      const editContacts = function (req, res) {
-        const user_id = req.query.id
-        console.log("id issss:  " + user_id)
-        User.findOne({googleid: user_id})
-		.then(user => {
-            res.send(user.contacts)
-        })
-        .catch(err => {
-        console.log('error is: ' + err)
-        res.status(400).json('Error: ' + err)
-        })
-
         //Users.update(param, callback)
-	var conditions = {id:req.params.id};
-	Users.update(conditions,req.body).then(doc => {
-		if (!doc){
-			return res.status(404).end();
-		}
-		return res.status(200).json(doc);
-	})
-	.catch(err => next (err));
+        var conditions = {id:req.params.id};
+        Users.update(conditions,req.body).then(doc => {
+            if (!doc){
+                return res.status(404).end();
+            }
+            return res.status(200).json(doc);
+        })
+        .catch(err => next (err));
 }
 
     const deleteContacts = function(req, res){
@@ -88,7 +77,15 @@ const addContact = (req, res) => {
 			}
 			return res.status(200).end();
 		})
-		.catch(err => next(err));
+        .catch(err => next(err));
+        
+        /* try{
+        res.json (await post.deleteContacts({_id: req.params.postId}));
+        }
+        catch(err){
+            res.json({message: "Fail to delete contact"});
+        } */
+
 	}
 
 
