@@ -12,7 +12,6 @@ class LoginButton extends React.Component {
     } 
 
     onSuccess(googleUser) {
-      console.log('why does nothiiiiiiiiiiing fucking gets logggggggeeeeeeeeeed u stupid ass bitch')
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     }
 

@@ -8,6 +8,7 @@ const User = require('../models/users');
 //and info about the contact that is being added)
 const addContact = (req, res) => {
     //get the fields of the new contact
+    console.log(JSON.stringify(req.body))
     const user_id = req.body.user_id
 	const name = req.body.name
 	const last_name = req.body.last_name
