@@ -13,12 +13,13 @@ class AddPalForm extends React.Component {
           user_id: id,
           name: '',
           last_name: '',
-          category: 'Friends',
-          email: '',
-          phone_number: '',
-          contact_method: '',
+          category: 'Friends', 
+          frequency: "1",
           general_notes: '',
-          frequency: '3'
+          contact_method: '',
+          email: '',
+          phone_number: ''
+         
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +32,6 @@ class AddPalForm extends React.Component {
       this.setState({
         [name]: value
       });
-      
     }
   
     handleSubmit(event) {
@@ -49,6 +49,7 @@ class AddPalForm extends React.Component {
         document.getElementById("add-pal-form-error-email").innerText = "Please type a valid email"
       }
      if (error == "") {
+       console.log(this.state)
        axios.post('http://localhost:3001/api/addContact', this.state)
         .then(response => {
           console.log("response: " + response)
@@ -74,11 +75,18 @@ class AddPalForm extends React.Component {
             <input type="text" value={this.state.last_name} onChange={this.handleChange} name="last_name" required/>
           </label>
           <label>
+            {//1 = every day, 2 = every 3 days, 3 = every week, 4 = every 2 weeks,
+              //5 = every 3 weeks, 6 = every month, 7 = every 2 months
+            }
             Remind me every: 
-            <select value={this.state.category} onChange={this.handleChange} name="category" required>
-              <option value="Friends">friends</option>
-              <option value="Family">family</option>
-              <option value="Professional">professional</option>
+            <select value={this.state.frequency} onChange={this.handleChange} name="frequency" required>
+              <option value="1">every day</option>
+              <option value="2">every 3 days</option>
+              <option value="3">every week</option>
+              <option value="4">every 2 weeks</option>
+              <option value="5">every 3 weeks</option>
+              <option value="6">every month</option>
+              <option value="7">every 2 months</option>
             </select>
           </label>
           <label>
