@@ -13,12 +13,12 @@ class AddPalForm extends React.Component {
           user_id: id,
           name: '',
           last_name: '',
-          category: 'Friends', 
+          category: 'Friend', 
           frequency: "1",
           general_notes: '',
           contact_method: '',
-          email: '',
-          phone_number: ''
+          // email: ''
+          //phone_number: ''
          
       };
       this.handleChange = this.handleChange.bind(this);
@@ -38,16 +38,16 @@ class AddPalForm extends React.Component {
       const phoneRE = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
       const emailRE = /^[\w!#$%&'*+\/=?^_`{|}~-]+@([\w\-]+(?:\.[\w\-]+)+)$/;
       let error = "";
-      document.getElementById("add-pal-form-error-phone").innerText = ""
-      document.getElementById("add-pal-form-error-email").innerText = ""
-      if (!(phoneRE.test(this.state.phone_number) || this.state.phone_number == "")) {
-        error += "invalid phone number"
-        document.getElementById("add-pal-form-error-phone").innerText = "Please type a valid phone number: ###-###-####"
-      }
-      if (!(emailRE.test(this.state.email) || this.state.email == "")) {
-        error += "invalid email"
-        document.getElementById("add-pal-form-error-email").innerText = "Please type a valid email"
-      }
+      // document.getElementById("add-pal-form-error-phone").innerText = ""
+      // document.getElementById("add-pal-form-error-email").innerText = ""
+      // if (!(phoneRE.test(this.state.phone_number) || this.state.phone_number == "")) {
+      //   error += "invalid phone number"
+      //   document.getElementById("add-pal-form-error-phone").innerText = "Please type a valid phone number: ###-###-####"
+      // }
+      // if (!(emailRE.test(this.state.email) || this.state.email == "")) {
+      //   error += "invalid email"
+      //   document.getElementById("add-pal-form-error-email").innerText = "Please type a valid email"
+      // }
      if (error == "") {
        console.log(this.state)
        axios.post('http://localhost:3001/api/addContact', this.state)

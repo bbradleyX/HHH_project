@@ -41,16 +41,21 @@ class Pals extends React.Component {
     }
 
     render() {
-        const list = this.state.data.map((pal, i) => {return(
-            <div>
-            <PalContainer
-                palID={pal._id}
-                key={i}
-                route={"/pals/" + pal._id}
-                name={pal.name + " "+ pal.last_name}
-                type={pal.category}
-                frequency="Every Week"
-            /></div>)
+        const freq = ["Every Day", "Every 3 Days", "Every Week", "Every 2 Weeks", "Every 3 Weeks", "Every Month", "Every 2 Months"]
+        const list = this.state.data.map((pal, i) => {
+            
+            return(
+                <div>
+                    <PalContainer
+                        palID={pal._id}
+                        key={i}
+                        route={"/pals/" + pal._id}
+                        name={pal.name + " "+ pal.last_name}
+                        type={pal.category}
+                        frequency={freq[parseInt(pal.frequency) - 1]}
+                    />
+                </div>
+            )
             
         })
         
