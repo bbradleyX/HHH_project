@@ -51,6 +51,9 @@ router.delete('/deleteLogs', logsRoutes.deleteLogs)
 //gets a random contact of the current user passed as the parameter
 router.get('/shake', shakerRoutes.shaker)
 
+router.put('/editContacts', contRoutes.editContacts)
+router.delete('/deleteContacts', contRoutes.deleteContacts)
+
 
 
 module.exports = router;
