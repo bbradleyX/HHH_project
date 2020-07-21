@@ -37,50 +37,49 @@ const sendReminders = (req, res) => {
                 if (needsReminder) {
                     const text = makeText(friends, family, profess)
                     console.log(text)
-                }
+                    sendEmail(user.email, text)
+                } 
             })
+            res.json('Emails sucessfully sent')
         })
         .catch(err => res.status(400).json('Error: ' + err))
 }
 const makeText = (friends, family, profess) => {
 
-    let text = 'Hi, thank you for using PalCheck! \n' + "Based on your customizable reminders, " + 
+    let text = "Hi, thank you for using PalCheck!\n\nBased on your customizable reminders, " + 
     "we wanted to remind you to reach out to your "
     
     if (friends.length > 0){
-        text = text + 'friends: \n'
+        text = text + 'friends: '
         friends.forEach(friend => {
             text = text + " " + friend.name + " " + friend.last_name + ","
         })
         text = text.substring(0, text.length - 1);
         text = text + '\n'
-        needsReminder = true;
     }
     if (family.length > 0){
-        text = text + 'family: \n'
+        text = text + 'family: '
         family.forEach(member => {
-            text = text + member.name + " " + member.last_name + + ","
+            text = text + member.name + " " + member.last_name + ","
         })
         text = text.substring(0, text.length - 1);
         text = text + '\n'
-        needsReminder = true;
+
     }
     if (profess.length > 0){
-        text = text + 'professional network: \n'
+        text = text + 'professional network: '
         profess.forEach(prof => {
-            text = text + prof.name + " " + prof.last_name + + ","
+            text = text + prof.name + " " + prof.last_name + ","
         })
         text = text.substring(0, text.length - 1);
-        text = text + '\n'
-        needsReminder = true;
     }
+    text = text + "\n\nBest,\nPalCheck Team"
 
     return text
 }
 const checkIfOvertime = (freq, latest_date) => {
     const today = Date.now()
     var diff = (today - latest_date)/(1000*60*60*24)
-    console.log('diff is: ' + diff)
 
     if (freq == "1"){
        if (diff >= 1) {
@@ -126,7 +125,7 @@ const checkIfOvertime = (freq, latest_date) => {
         }
     }
 }
-const sendEmail = (text, to) => {
+const sendEmail = (to, text) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {

@@ -52,9 +52,6 @@ router.delete('/deleteLogs', logsRoutes.deleteLogs)
 //gets a random contact of the current user passed as the parameter
 router.get('/shake', shakerRoutes.shaker)
 
-//sends an email to someone that is specified in the body of the request
-router.post('/email', emailRoutes.sendEmail)
-
 //sends reminders
 router.get('/remind', emailRoutes.sendReminders)
 
