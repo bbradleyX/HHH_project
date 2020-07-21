@@ -6,7 +6,8 @@ const routes = require('./userRoutes');
 const contRoutes = require('./contacts');
 const logsRoutes = require('./logs');
 const auth = require('./auth');
-const shakerRoutes = require('./shaker')
+const shakerRoutes = require('./shaker');
+const emailRoutes = require('./email');
 
 //This will output all the users' names that are 
 //in the database from the Users collection
@@ -51,6 +52,7 @@ router.delete('/deleteLogs', logsRoutes.deleteLogs)
 //gets a random contact of the current user passed as the parameter
 router.get('/shake', shakerRoutes.shaker)
 
-
+//sends reminders
+router.get('/remind', emailRoutes.sendReminders)
 
 module.exports = router;
