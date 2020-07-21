@@ -53,6 +53,7 @@ class AddPalForm extends React.Component {
        axios.post('http://localhost:3001/api/addContact', this.state)
         .then(response => {
           console.log("response: " + response)
+          window.location = "/pals";
 
         })
         .catch(error => {
