@@ -67,19 +67,17 @@ class AddPalForm extends React.Component {
     render() {
       return (
         <form onSubmit={this.handleSubmit} className="add-pal-form">
-          <label>
-            First Name: 
+          <label>First Name: </label>
             <input type="text" value={this.state.name} onChange={this.handleChange} name="name" required/>
-          </label>
-          <label>
-            Last Name: 
+          
+          <label>Last Name: </label>
             <input type="text" value={this.state.last_name} onChange={this.handleChange} name="last_name" required/>
-          </label>
-          <label>
+          
+           
+          <label> Remind me every: </label>
             {//1 = every day, 2 = every 3 days, 3 = every week, 4 = every 2 weeks,
               //5 = every 3 weeks, 6 = every month, 7 = every 2 months
             }
-            Remind me every: 
             <select value={this.state.frequency} onChange={this.handleChange} name="frequency" required>
               <option value="1">every day</option>
               <option value="2">every 3 days</option>
@@ -89,31 +87,26 @@ class AddPalForm extends React.Component {
               <option value="6">every month</option>
               <option value="7">every 2 months</option>
             </select>
-          </label>
-          <label>
-            Connection Type: 
+          
+          <label>Connection Type: </label>
             <select value={this.state.category} onChange={this.handleChange} name="category" required>
               <option value="Friend">friends</option>
               <option value="Family">family</option>
               <option value="Professional">professional</option>
             </select>
-          </label>
-          <label>
-            Email: 
+          
+          <label>Email: </label>
             <input type="text" value={this.state.email} onChange={this.handleChange} name="email" />
-          </label>
-          <label>
-            Phone Number: 
+          
+          <label>Phone Number: </label>
             <input type="text" value={this.state.phone_number} onChange={this.handleChange} name="phone_number" />
-          </label>
-          <label>
-            Contact Method: 
+          
+          <label>Contact Method: </label>
             <input type="text" value={this.state.contact_method} onChange={this.handleChange} name="contact_method"/>
-          </label>
-          <label>
-            Notes: 
+          
+          <label>Notes: </label>
             <textarea value={this.state.general_notes} onChange={this.handleChange} name="general_notes" />
-          </label>
+          
           <input type="submit" value="Submit" />
           <h5 id="add-pal-form-error-phone"></h5>
           <h5 id="add-pal-form-error-email"></h5>
