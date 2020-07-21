@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
         this.setState({no_friends: false})
         this.setState({random_pal_name: response.data.name,
                        random_pal_last_name: response.data.last_name,
-                       random_pal_category: response.data.random_pal_category})
+                       random_pal_category: response.data.category})
       })
       .catch((err) => {
         //To Do:
