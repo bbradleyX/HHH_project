@@ -23,6 +23,8 @@ const addContact = (req, res) => {
 	User.findOne({googleid: user_id})
 		.then(user => {
             //add a new contact
+            console.log("name: " + name)
+            
     user.contacts.push({name: name, 
                         last_name: last_name, 
                         category: category, 
