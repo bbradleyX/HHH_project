@@ -7,6 +7,8 @@ import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/LoginPage'
 import Pals from './pages/Pals'
 import PalView from './pages/Palview'
+import AddPalPage from './pages/AddPalPage';
+import AddLogPage from './pages/AddLogPage';
 
 class App extends React.Component{
   constructor(props) {
@@ -109,7 +111,10 @@ class App extends React.Component{
      <BrowserRouter>
       <div className="App">
         <Switch>
-        
+        <Route path="/journal" render={() =>
+          this.ifUserSignedIn(AddLogPage)}/>
+        <Route path="/pals/addpal" render={() => 
+          this.ifUserSignedIn(AddPalPage)}/>
         <Route path="/pals/:palID" render={() => 
           this.ifUserSignedIn(PalView)}/>
         {/* <Route path="/pals/:palID" children={<PalView />} /> */}

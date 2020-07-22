@@ -1,11 +1,9 @@
 const User = require('../models/users');
 
-//To Dos:
-//1. error handling if request is not valid or smt like that
 
-
-//adds contact to the given user's contact list (Should pass in the current user's google_id 
-//and info about the contact that is being added)
+/*
+Adds contact to the current user
+*/
 const addContact = (req, res) => {
     //get the fields of the new contact
     const user_id = req.body.user_id
@@ -22,15 +20,15 @@ const addContact = (req, res) => {
 	User.findOne({googleid: user_id})
 		.then(user => {
             //add a new contact
-    user.contacts.push({name: name, 
-                        last_name: last_name, 
-                        category: category, 
-                        frequency: frequency,
-                        general_notes: general_notes,
-                        contact_method: contact_method,
-                        email: email,
-                        phone_number: phone_number,
-                    })
+            user.contacts.push({name: name, 
+                                last_name: last_name, 
+                                category: category, 
+                                frequency: frequency,
+                                general_notes: general_notes,
+                                contact_method: contact_method,
+                                email: email,
+                                phone_number: phone_number,
+            })
             user.save()
                 .then(() => res.json('contact added'))
                 .catch(err => res.status(400).json('Error: ' + err))
@@ -39,13 +37,15 @@ const addContact = (req, res) => {
             console.log('error is: ' + err)
             res.status(400).json('Error: ' + err)
         });
-    }
+}
 
-    //returns all the contacts of a current user
-    const getContacts = function (req, res) {
-        const user_id = req.query.id
-        console.log("id issss:  " + user_id)
-        User.findOne({googleid: user_id})
+/*
+returns all the contacts of the current user
+*/
+const getContacts = function (req, res) {
+    const user_id = req.query.id
+    console.log("id issss:  " + user_id)
+    User.findOne({googleid: user_id})
 		.then(user => {
             res.send(user.contacts)
         })
@@ -136,5 +136,5 @@ const addContact = (req, res) => {
         deleteContacts: deleteContacts
     }
     
-    module.exports = ContactRoutes;
+module.exports = ContactRoutes;
     

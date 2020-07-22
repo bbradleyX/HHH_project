@@ -6,7 +6,7 @@ function Popup(props) {
     let category = props.category
     const name = props.name
     const last_name = props.last_name
-
+    console.log('-----------------'+category)
     if (category == 'Family'){
         category = 'family member'
     } else if (category == 'Professional'){

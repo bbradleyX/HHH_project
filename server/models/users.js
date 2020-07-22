@@ -82,8 +82,7 @@ const UserSchema = new Schema({
 })
 
 
-//create model for user
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
-//module.exports = Contact;

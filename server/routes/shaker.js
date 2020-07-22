@@ -1,5 +1,9 @@
 const User = require('../models/users');
 
+/*
+gets a random contact for the current user
+request param - user_id(googleid)
+*/
 const shaker = (req, res) => {
     //get all the contacts id's
     const user_id = req.query.id

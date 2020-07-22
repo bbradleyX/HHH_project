@@ -9,6 +9,9 @@
   flex-direction: column;
 }
 
+.hidden {
+  visibility: hidden;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
