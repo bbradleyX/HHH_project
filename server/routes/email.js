@@ -42,7 +42,7 @@ const sendReminders = (req, res) => {
                     needsReminder = true
                 }
                 if (needsReminder) {
-                    const text = makeText(friends, family, profess)
+                    const text = makeText(friends, family, profess, user.name)
                     console.log(text)
                     sendEmail(user.email, text)
                 } 
@@ -59,9 +59,9 @@ const sendReminders = (req, res) => {
 @result: text which icludes the reminder that will be sent to the user populated with the 
          names of people who the user needs to reach out to placed in their categories
 */
-const makeText = (friends, family, profess) => {
+const makeText = (friends, family, profess, name) => {
 
-    let text = "Hi, thank you for using PalCheck!\n\nBased on your customizable reminders, " + 
+    let text = "Hi " +name+ ",\n\nThank you for using PalCheck!\n\nBased on your customizable reminders, " + 
     "we wanted to remind you to reach out to your "
     
     if (friends.length > 0){
