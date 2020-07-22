@@ -52,6 +52,12 @@ request params - user_id (googleid)
 router.get('/getContacts', contRoutes.getContacts)
 
 /*
+Returns the individual contact info with specified id
+request body - current user_id and contact_id, 
+*/
+router.get('/getIndividual', contRoutes.getIndContact)
+
+/*
 edits a contact with the specified id 
 request body - need to pass in current user id, and contact_id, and all the updated fields
 */

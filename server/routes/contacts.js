@@ -126,12 +126,31 @@ request body - need to pass in current user id, and contact_id
         });
 	}
 
+    /*
+    Given a current user_id, and contact_id, returns the contact info with specified id
+    */
+    const getIndContact = function(req, res){
+        const user_id = req.body.user_id
+        const contact_id = req.body.contact_id
+
+        User.findOne({googleid: user_id})
+		.then(user => {
+            let contacts = user.contacts
+            const contact = contacts.find(element => element._id == contact_id)
+            res.json(contact)
+        })
+        .catch(err => {
+            console.log('error is: ' + err)
+            res.status(400).json('Error: ' + err)
+        })
+    }
 
     const ContactRoutes = {
         addContact: addContact,
         getContacts: getContacts,
         editContacts: editContacts,
-        deleteContacts: deleteContacts
+        deleteContacts: deleteContacts,
+        getIndContact: getIndContact
     }
     
 module.exports = ContactRoutes;
