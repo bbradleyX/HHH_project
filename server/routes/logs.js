@@ -1,9 +1,10 @@
 const User = require('../models/users');
 
-//To Dos:
-//1. error handling if request is not valid or smt like that
 
-//adding logs
+/*
+adds logs for a current user with the specified contact
+body - user_id(googleid), contact_id, date, notes
+ */
 const addLogs = (req, res) => {
     //getting information from the body of the request
     const user_id = req.body.user_id
@@ -35,9 +36,10 @@ const addLogs = (req, res) => {
         });
     }
 
-
-//getting logs
-//To do: find out if I should get rid of getting back id
+/*
+gets all the logs for a current user with a specific contact
+body - user_id(googleid), contact_id
+ */
 const getLogs = (req, res) => {
     const user_id = req.body.user_id
     const contact_id = req.body.contact_id
@@ -56,7 +58,10 @@ const getLogs = (req, res) => {
         })
 }
 
-//editing logs
+/*
+edits the given log with a specific id for a current user with a specified contact
+body - user_id(googleid), contact_id, log_id, date, notes
+*/
 const editLogs = (req, res) => {
     //getting information from the body of the request
     const user_id = req.body.user_id
@@ -94,8 +99,10 @@ const editLogs = (req, res) => {
         });
     }
 
-
-//deleting logs
+/* 
+deletes a log with the specified id
+body - user_id(google_id), contact_id, log_id
+*/
 const deleteLogs = (req, res) => {
     //getting information from the body of the request
     const user_id = req.body.user_id

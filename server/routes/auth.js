@@ -5,10 +5,12 @@ const client = new OAuth2Client(CLIENT_ID)
 const User = require('../models/users');
 const e = require('express');
 
-/*this code uses Google Auth libraries to verify the token 
-  if the token is valid, then it checks wether or not the user already exists in the database.
-  If it does, nothing happens (probably will have to add sessions?) - if does not exist, then
-  creates one.
+/*
+this code uses Google Auth libraries to verify the token 
+if the token is valid, then it checks wether or not the user already exists in the database.
+If it does, nothing happens (probably will have to add sessions?) - if does not exist, then
+creates one.
+@params - token from google
 */
 const verify = async function (req, res) {
     let token = req.body.id_token
@@ -31,7 +33,6 @@ const verify = async function (req, res) {
                     //if a user exists
                     if (doc){
                         res.json('user signed in')
-                        //will prob have to add sessions later
                     } else {
                         //add a new user
                         const newUser = new User ({
@@ -46,8 +47,6 @@ const verify = async function (req, res) {
                     }
                 } 
             })
-            console.log(payload)
-            console.log('user_id is ' + userid)
         })
         .catch (err => {
             console.log(err)

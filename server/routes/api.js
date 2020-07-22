@@ -9,50 +9,81 @@ const auth = require('./auth');
 const shakerRoutes = require('./shaker');
 const emailRoutes = require('./email');
 
-//This will output all the users' names that are 
-//in the database from the Users collection
+/*
+This will output all the users that are 
+in the database from the Users collection 
+*/
 router.get('/users', routes.getUsers);
 
-//will add a user in the users' collection
-//do not use this directly unless testing
+/*
+will add a user in the users' collection
+do not use this directly unless testing
+*/
 router.post('/users', routes.addUser);
 
-//edits user with updated fields (pass in all the fields except for contacts and email)
+/*
+Edits user with updated fields 
+(pass in all the fields except for contacts and email)
+*/
 router.put('/users', routes.editUser);
 
-//delets a user in the url specified parameter id
+/*
+deletes a user in the url specified parameter id
+*/
 router.delete('/users', routes.deleteUser);
 
-//will verify the user and will create a new user if not already exists
+/*
+will verify the user and will create a new user if not already exists: Google Sign-in API
+*/
 router.post('/auth', auth.verify);
 
-//adding connections to the current user (user id passed in a link)
+/*
+adding connections to the current user 
+request params - user_id (googleid)
+body - name, last_name, category, general_notes,   
+       contact_method, email, phone_number, frequency
+*/
 router.post('/addContact', contRoutes.addContact);
 
-//gets the current user's contacts (have to pass in id)
+/*
+gets the current user's contacts
+request params - user_id (googleid)
+*/
 router.get('/getContacts', contRoutes.getContacts)
 
-//adds logs, need to pass in the current user id, contact id for which adding logs, 
-//and time (optionally notes as well) in the body 
+/*
+adds logs for a current user with the specified contact
+body - user_id(googleid), contact_id, date, notes
+ */
 router.post('/addLogs', logsRoutes.addLogs)
 
-
-//gets all the logs for a current user with a specific contact - need to pass in 
-//the current user google_id as user_id and the contact_id
+/*
+gets all the logs for a current user with a specific contact
+body - user_id(googleid), contact_id
+ */
 router.get('/getLogs', logsRoutes.getLogs)
 
-//edits the given log with a specific id for a current user with a specified contact
-//need to pass in google_id of the current user, need to pass in the contact id and the log_id 
-//that needs to be modified as well as the new log details - all in the body of the request
+/*
+edits the given log with a specific id for a current user with a specified contact
+body - user_id(googleid), contact_id, log_id, date, notes
+*/
 router.put('/editLogs', logsRoutes.editLogs)
 
-//deletes a log with the specified id (need to pass in current user, and the connection)
+/* 
+deletes a log with the specified id
+body - user_id(google_id), contact_id, log_id
+*/
 router.delete('/deleteLogs', logsRoutes.deleteLogs)
 
-//gets a random contact of the current user passed as the parameter
+/*
+gets a random contact for the current user
+request param - user_id(googleid)
+*/
 router.get('/shake', shakerRoutes.shaker)
 
-//sends reminders
+/*
+sends reminders to the users
+*/
 router.get('/remind', emailRoutes.sendReminders)
 
 module.exports = router;
