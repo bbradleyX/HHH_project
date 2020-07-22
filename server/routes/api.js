@@ -51,7 +51,10 @@ router.delete('/deleteLogs', logsRoutes.deleteLogs)
 //gets a random contact of the current user passed as the parameter
 router.get('/shake', shakerRoutes.shaker)
 
+//edits a contact with the specified id (need to pass in current user)
 router.put('/editContacts', contRoutes.editContacts)
+
+//deletes a contact with the specified id (need to pass in current user)
 router.delete('/deleteContacts', contRoutes.deleteContacts)
 
 

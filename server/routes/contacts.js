@@ -57,35 +57,74 @@ const addContact = (req, res) => {
 
      //returns updated contact info to the current user
      const editContacts = function (req, res) {
-        //Users.update(param, callback)
-        var conditions = {id:req.params.id};
-        User.update(conditions,req.body).then(doc => {
-            if (!doc){
-                return res.status(404).end();
-            }
-            return res.status(200).json(doc);
+        const user_id = req.body.user_id
+        const contact_id = req.body.contact_id
+        const name = req.body.name
+        const last_name = req.body.last_name
+        const category = req.body.category
+        const general_notes = req.body.general_notes
+        const contact_method = req.body.contact_method
+        const email = req.body.email
+        const phone_number = req.body.phone_number
+        const frequency = req.body.frequency
+        
+        User.findOne({googleid: user_id})
+		.then(user => {
+            //get the array of contact JSON objects
+            let contacts = user.contacts
+            const contact = contacts.find(element => element._id == contact_id)
+                if(contact){
+                    contact.name = name
+                    contact.last_name = last_name
+                    contact.category = category
+                    contact.general_notes = general_notes
+                    contact.contact_method = contact_method
+                    contact.email = email
+                    contact.phone_number = phone_number
+                    contact.frequency= frequency
+                    user.save()
+                    .then(() => res.json('contact edited'))
+                    .catch(err => res.status(400).json('Error: ' + err))
+                }else {
+                res.status(400).json('Error: the contact with the specified id does not exist')
+                    }
         })
-        .catch(err => next (err));
-}
+        .catch(err => {
+            console.log('error is: ' + err)
+            res.status(400).json('Error: ' + err)
+        });
+    }
 
     const deleteContacts = function(req, res){
-        //Users.remove(param, callback)
-		User.findByIdandRemove(req.param.id).exec()
-		.then(doc => {
-			if(!doc) {
-				return res.status(404).end();
-			}
-			return res.status(200).end();
-		})
-        .catch(err => next(err));
-        
-        /* try{
-        res.json (await post.deleteContacts({_id: req.params.postId}));
-        }
-        catch(err){
-            res.json({message: "Fail to delete contact"});
-        } */
+    //getting information from the body of the request
 
+    const user_id = req.body.user_id
+    const contact_id = req.body.contact_id
+
+    User.findOne({googleid: user_id})
+		.then(user => {
+            //get the array of contact JSON objects
+            let contacts = user.contacts
+            const contact = contacts.find(element => element._id == contact_id)
+            if(contact){
+                for(var i = 0; i < contact.length; i++) {
+                    if(contact[i]._id == contact_id) {
+                        //res.status(200).json('loop'+ i);
+                        contact.splice(i, 1);
+                        break;
+                    }
+                }
+                 user.save()
+                        .then(() => res.json('Contact deleted'))
+                        .catch(err => res.status(400).json('Error: ' + err))
+            }else {
+                res.status(400).json('Error: the contact with the specified id does not exist')
+            }
+        })
+		.catch(err => {
+            console.log('error is: ' + err)
+            res.status(400).json('Error: ' + err)
+        });
 	}
 
 
