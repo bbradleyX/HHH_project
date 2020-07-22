@@ -52,6 +52,18 @@ request params - user_id (googleid)
 router.get('/getContacts', contRoutes.getContacts)
 
 /*
+edits a contact with the specified id 
+request body - need to pass in current user id, and contact_id, and all the updated fields
+*/
+router.put('/editContacts', contRoutes.editContacts)
+
+/*
+deletes a contact with the specified id 
+request body - need to pass in current user id, and contact_id
+*/
+router.delete('/deleteContacts', contRoutes.deleteContacts)
+
+/*
 adds logs for a current user with the specified contact
 body - user_id(googleid), contact_id, date, notes
  */
@@ -80,12 +92,6 @@ gets a random contact for the current user
 request param - user_id(googleid)
 */
 router.get('/shake', shakerRoutes.shaker)
-
-//edits a contact with the specified id (need to pass in current user)
-router.put('/editContacts', contRoutes.editContacts)
-
-//deletes a contact with the specified id (need to pass in current user)
-router.delete('/deleteContacts', contRoutes.deleteContacts)
 
 /*
 sends reminders to the users

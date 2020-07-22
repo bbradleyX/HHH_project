@@ -55,7 +55,10 @@ const getContacts = function (req, res) {
         })
     }
 
-     //returns updated contact info to the current user
+/*
+edits a contact with the specified id 
+request body - need to pass in current user id, and contact_id, and all the updated fields
+*/
      const editContacts = function (req, res) {
         const user_id = req.body.user_id
         const contact_id = req.body.contact_id
@@ -95,6 +98,10 @@ const getContacts = function (req, res) {
         });
     }
 
+/*
+deletes a contact with the specified id 
+request body - need to pass in current user id, and contact_id
+*/
     const deleteContacts = function(req, res){
     const user_id = req.body.user_id
     const contact_id = req.body.contact_id
@@ -103,21 +110,15 @@ const getContacts = function (req, res) {
 		.then(user => {
             //get the array of contact JSON objects
             let contacts = user.contacts
-            const contact = contacts.find(element => element._id == contact_id)
-            if(contact){
-                for(var i = 0; i < contact.length; i++) {
-                    if(contact[i]._id == contact_id) {
-                        //res.status(200).json('loop'+ i);
-                        contacts.splice(i, 1);
-                        break;
-                    }
+            for(var i = 0; i < contacts.length; i++) {
+                if(contacts[i]._id == contact_id) {
+                    contacts.splice(i, 1);
+                    break;
                 }
-                 user.save()
-                        .then(() => res.json('Contact deleted'))
-                        .catch(err => res.status(400).json('Error: ' + err))
-            }else {
-                res.status(400).json('Error: the contact with the specified id does not exist')
             }
+            user.save()
+                .then(() => res.json('Contact deleted'))
+                .catch(err => res.status(400).json('Error: ' + err))
         })
 		.catch(err => {
             console.log('error is: ' + err)
