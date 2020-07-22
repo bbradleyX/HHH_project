@@ -81,19 +81,15 @@ request param - user_id(googleid)
 */
 router.get('/shake', shakerRoutes.shaker)
 
-<<<<<<< HEAD
 //edits a contact with the specified id (need to pass in current user)
 router.put('/editContacts', contRoutes.editContacts)
 
 //deletes a contact with the specified id (need to pass in current user)
 router.delete('/deleteContacts', contRoutes.deleteContacts)
 
-
-=======
 /*
 sends reminders to the users
 */
 router.get('/remind', emailRoutes.sendReminders)
->>>>>>> master
 
 module.exports = router;

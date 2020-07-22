@@ -96,8 +96,6 @@ const getContacts = function (req, res) {
     }
 
     const deleteContacts = function(req, res){
-    //getting information from the body of the request
-
     const user_id = req.body.user_id
     const contact_id = req.body.contact_id
 
@@ -110,7 +108,7 @@ const getContacts = function (req, res) {
                 for(var i = 0; i < contact.length; i++) {
                     if(contact[i]._id == contact_id) {
                         //res.status(200).json('loop'+ i);
-                        contact.splice(i, 1);
+                        contacts.splice(i, 1);
                         break;
                     }
                 }
@@ -126,7 +124,6 @@ const getContacts = function (req, res) {
             res.status(400).json('Error: ' + err)
         });
 	}
-
 
 
     const ContactRoutes = {
